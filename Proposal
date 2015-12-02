@@ -1,0 +1,44 @@
+Title: Clustering fashion brands using Twitter data
+
+Group Members: Vanessa Friedemann (solo project)
+
+Description: 
+
+Intro:
+======
+The goal of this project will be to construct a graphical representation of the fashion brand ecosystem using unsupervised learning techniques.
+
+This map could be used by consumers to pinpoint similar brands to those they already patronize.  Additionally, companies could utilize this information to identify a need to differentiate themselves from direct competitors in the industry.
+
+Method:
+=======
+The training data will be acquired directly from the Twitter accounts of fashion brands and their followers.  For this project, it's our hypothesis that the list of brands used isn't critical to the outcome of the experiment.  For example, we could select this list of brands based on total globabl revenue, those carried by a department store in Stanford shopping center, or any number of criteria.  
+
+Once we have the Twitter account handles of the selected brands, we will use the Tweepy python library to interact with Twitter's REST API to gather the relevant information.  
+
+Features vectors:
+=================
+We'll create a feature vector for each brand containing the following features as elements:
+
+	Follower data
+	-------------
+	-mode time zone of followers 
+	-median number of friends of followers
+	-top 10 most frequent locations of followers 
+	-number of verified followers
+	-number of total followers
+	-top 10 other accounts followed by followers
+
+	Company account data
+	--------------------
+	-accounts followed by company
+	-lists to which company has been added
+	-top 10 hashtags used in tweets that reference this company
+
+Dimensionality Reduction:
+=========================
+It will be determined experimentally if any of the above features should be removed or if additional features should be considered.  Further, principal component analysis (or a similiar tool) will be employed for dimesionality reduction of this final feature set.
+
+Clustering:
+===========
+Once the feature vectors have been finalized and reduced, we'll perform clustering.  The clusters in this case are meant to represent genres of fashion brands (e.g. sporting, luxury, maternity, fast fashion, etc.).  To begin with, we'll try k-means.  However, it's our expectation that due to the inherent overlap of clusters in this problem space, we'll be forced to consider Expectation Maximization.  We'll experiment with the number of clusters to determine empirically the best fit.
